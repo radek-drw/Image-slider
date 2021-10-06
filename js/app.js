@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
    const imagesContainerEl = document.querySelector('.slider__images-container');
    const img1El = document.querySelector('.slider__image-container--first img');
    const img2El = document.querySelector('.slider__image-container--second img');
-   const img1ContainerEl = document.querySelector('.slider__image-container--first');
    const img2ContainerEl = document.querySelector('.slider__image-container--second');
    const dividerEl = document.querySelector('.slider__divider');
    const handleEl = document.querySelector('.slider__handle');
@@ -41,9 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
          dragging = false;
       })
 
+      handleEl.addEventListener('touchstart', () => {
+         dragging = true;
+      })
+
+      handleEl.addEventListener('touchend', () => {
+         dragging = false;
+      })
+
       window.addEventListener('mousemove', event => {
          if (dragging) {
             move(event.clientX);
+         }
+      })
+
+      window.addEventListener('touchmove', event => {
+         if (dragging) {
+            move(event.touches[0].clientX);
          }
       })
    }
